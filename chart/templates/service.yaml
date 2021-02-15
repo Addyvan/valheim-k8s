@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: valheim-server
   namespace: default
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   ports:
   - name: game1
