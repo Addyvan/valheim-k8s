@@ -8,3 +8,12 @@ Quickly made this to play with some friends. I can template this further, respon
 
 * A kubernetes cluster 
   * Ability to create LoadBalancer services (using metallb or cloud)
+
+## Usage
+
+```bash
+helm install valheim-server ./chart  \
+  --set worldName=example-world-name \
+  --set serverName=example-server-name \
+  --set password=password
+```
