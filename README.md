@@ -56,6 +56,8 @@ Assuming you have taken care of the networking (port-forwarding if needed, LoadB
 * To connect double click the server in the steam servers explorer
   * You will be asked for the password in the steam ui and in game
 
+More visual set of instructions [here](https://github.com/mbround18/valheim-docker/discussions/51)
+
 ## Potential future updates
 
 If there is interest I can hash out the following:
