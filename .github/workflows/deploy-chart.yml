@@ -2,7 +2,7 @@ name: Deploy helm chart
 on: 
   push:
     branches:
-      - master
+      - main
     paths:
     - '.github/workflows/deploy-chart.yml'
     - 'chart/**'
@@ -11,10 +11,10 @@ jobs:
   deploy-mig-daemon-img:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v1
         with:
-          ref: 'master'
+          ref: 'main'
 
       - name: Install tools
         run: |
