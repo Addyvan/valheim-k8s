@@ -16,6 +16,6 @@ spec:
     port: 2458
     targetPort: 2458
     protocol: UDP
-  type: LoadBalancer
+  type: {{ .Values.networking.serviceType }}
   selector:
     app: valheim-server

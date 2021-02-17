@@ -28,12 +28,17 @@ spec:
           name: game2
         - containerPort: 2458
           name: game3
+        {{ if eq .Values.storage.kind "hostvol" }}
         volumeMounts:
         - mountPath: /config
           name: gamefiles
+        {{ end }}
+        resources: {{- toYaml .Values.resources | nindent 10 }}
+      {{ if eq .Values.storage.kind "hostvol" }}
       volumes:
       - name: gamefiles
         hostPath:
-          # raid drive
-          path: /data/valheim
+          path: {{ .Values.storage.hostvol.path }}
           type: Directory
+      {{ end }}
+

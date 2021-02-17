@@ -1,3 +1,13 @@
 worldName: example-world-name
 serverName: example-server-name
 password: password 
+
+resources: {}
+
+storage:
+  kind: hostvol
+  hostvol:
+    path: /data/valheim
+
+networking:
+  serviceType: LoadBalancer
