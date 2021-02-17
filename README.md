@@ -1,13 +1,6 @@
 # valheim-k8s
 
-Basic kubernetes deployment of a valheim game-server. Based off the dockerization work by lloesche [here](https://github.com/lloesche/valheim-server-docker). 
-
-Quickly made this to play with some friends. I can template this further, respond to gh issues, and make the chart repo available via an index file if there is genuine interest.
-
-## Current pre-reqs
-
-* A kubernetes cluster
-  * Ability to create LoadBalancer services (using metallb or cloud)
+kubernetes deployment for a valheim game-server. Based off the dockerization work by lloesche [here](https://github.com/lloesche/valheim-server-docker).
 
 ## Usage
 
@@ -19,7 +12,9 @@ helm repo update
 helm install valheim-server valheim-k8s/valheim-k8s  \
   --set worldName=example-world-name \
   --set serverName=example-server-name \
-  --set password=password
+  --set password=password \
+  --set storage.kind=hostvol \
+  --set storage.hostvol.path=/data/valheim
 ```
 
 ## Configuration
@@ -52,6 +47,14 @@ To use an existing world simply set the `worldName` parameter to the name of you
 $ ls /data/valheim/worlds/
 myworld.db  myworld.fwl
 ```
+
+## Connecting to your world
+
+Assuming you have taken care of the networking (port-forwarding if needed, LoadBalancer IP is created, ...): 
+* In the steam UI (NOT IN GAME) go to view->servers->add favorite
+  * set the port to 2457 (will randomly change to 2456 in the UI but ignore that)
+* To connect double click the server in the steam servers explorer
+  * You will be asked for the password in the steam ui and in game
 
 ## Potential future updates
 
