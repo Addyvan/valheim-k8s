@@ -16,11 +16,11 @@ spec:
         name: vailheim-server
         env:
         - name: SERVER_NAME
-          value: {{ .Values.serverName }}
+          value: example-server-name
         - name: WORLD_NAME
-          value: {{ .Values.worldName }}
+          value: example-world-name
         - name: SERVER_PASS
-          value: {{ .Values.password }}
+          value: password
         ports:
         - containerPort: 2456
           name: game1
@@ -28,17 +28,13 @@ spec:
           name: game2
         - containerPort: 2458
           name: game3
-        {{ if eq .Values.storage.kind "hostvol" }}
         volumeMounts:
         - mountPath: /config
           name: gamefiles
-        {{ end }}
-        resources: {{- toYaml .Values.resources | nindent 10 }}
-      {{ if eq .Values.storage.kind "hostvol" }}
+        resources:
+          {}
       volumes:
       - name: gamefiles
         hostPath:
-          path: {{ .Values.storage.hostvol.path }}
+          path: /data/valheim
           type: Directory
-      {{ end }}
-
