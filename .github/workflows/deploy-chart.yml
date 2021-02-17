@@ -43,6 +43,9 @@ jobs:
       - name: Update chart index
         run: |
           cr index -i ./index.yaml -p .deploy --owner addyvan --repo valheim-k8s || echo "index.yaml did not change"
+      
+      - name: commit index changes
+        run: |
           git add index.yaml
           git config --local user.email ${{ secrets.GIT_EMAIL }}
           git config --local user.name ${{ secrets.GIT_USER }}
