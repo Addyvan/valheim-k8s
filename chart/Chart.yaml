@@ -1,5 +1,5 @@
 apiVersion: v2
-name: valheim-chart
+name: valheim-k8s
 description: Basic chart for deploying valheim to a k8s homelab 
 type: application
 version: 0.1.0
