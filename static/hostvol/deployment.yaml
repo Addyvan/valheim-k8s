@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valheim-server
+spec:
+  selector:
+    matchLabels:
+      app: valheim-server
+  template:
+    metadata:
+      labels:
+        app: valheim-server
+    spec:
+      containers:
+      - image: lloesche/valheim-server:latest
+        name: vailheim-server
+        env:
+        - name: SERVER_NAME
+          value: example-server-name
+        - name: WORLD_NAME
+          value: example-world-name
+        - name: SERVER_PASS
+          value: password
+        ports:
+        - containerPort: 2456
+          name: game1
+        - containerPort: 2457
+          name: game2
+        - containerPort: 2458
+          name: game3
+        volumeMounts:
+        - mountPath: /config
+          name: gamefiles
+        resources:
+          {}
+      volumes:
+      - name: gamefiles
+        hostPath:
+          path: /data/valheim
+          type: Directory
