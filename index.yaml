@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  valheim-chart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-02-17T15:26:31.590211143-05:00"
+    description: Basic chart for deploying valheim to a k8s homelab
+    digest: 1b10a55ede68b3b410b626cf03cb6449cdb3d2b1ae100ccf62e90a555df5156a
+    name: valheim-chart
+    urls:
+    - https://github.com/Addyvan/valheim-k8s/releases/download/valheim-chart-0.0.1/valheim-chart-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-02-17T15:26:31.336765392-05:00"
