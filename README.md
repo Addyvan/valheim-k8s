@@ -52,7 +52,7 @@ myworld.db  myworld.fwl
 
 Assuming you have taken care of the networking (port-forwarding if needed, LoadBalancer IP is created, ...): 
 * In the steam UI (NOT IN GAME) go to view->servers->add favorite
-  * set the port to 2457 (will randomly change to 2456 in the UI but ignore that)
+  * set the port to 2457 ([reason for that here](https://github.com/lloesche/valheim-server-docker/discussions/32#discussioncomment-371306))
 * To connect double click the server in the steam servers explorer
   * You will be asked for the password in the steam ui and in game
 
