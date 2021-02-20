@@ -11,3 +11,5 @@ storage:
 
 networking:
   serviceType: LoadBalancer
+
+nodeSelector: {}

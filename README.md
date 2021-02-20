@@ -27,6 +27,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `storage.kind`                             | Storage strategy/soln used to provide the game-server with persistence | `hostvol`             |
 | `storage.hostvol.path`                     | The folder to be mounted into /config in the game-server pod | `/data/valheim`                 |
 | `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP` | `LoadBalancer`                 |
+| `nodeSelector`                   |  | `{}`                 |
 
 ## Persistence
 
