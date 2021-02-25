@@ -1,5 +1,7 @@
 # valheim-k8s
 
+[https://github.com/Addyvan/valheim-k8s](https://github.com/Addyvan/valheim-k8s)
+
 kubernetes deployment for a valheim game-server. Based off the dockerization work by lloesche [here](https://github.com/lloesche/valheim-server-docker).
 
 ## Usage
