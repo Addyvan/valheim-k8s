@@ -17,7 +17,7 @@ spec:
       {{- end }}
       containers:
       - image: lloesche/valheim-server:latest
-        name: vailheim-server
+        name: valheim-server
         env:
         - name: SERVER_NAME
           value: {{ .Values.serverName }}
