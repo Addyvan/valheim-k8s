@@ -1,0 +1,13 @@
+{{ if eq .Values.storage.kind "persistentVolumeClaim" }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: valheim-server-world-data
+spec:
+  storageClassName: {{ .Values.storage.pvc.storageClassName }}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.storage.pvc.size }}
+{{ end }}

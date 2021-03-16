@@ -8,6 +8,9 @@ storage:
   kind: hostvol
   hostvol:
     path: /data/valheim
+  pvc:
+    storageClassName: default
+    size: 1Gi
 
 networking:
   serviceType: LoadBalancer

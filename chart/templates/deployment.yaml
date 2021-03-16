@@ -45,4 +45,9 @@ spec:
           path: {{ .Values.storage.hostvol.path }}
           type: Directory
       {{ end }}
-
+      {{ if eq .Values.storage.kind "persistentVolumeClaim" }}
+      volumes:
+      - name: gamefiles
+        persistentVolumeClaim:
+          claimName: valheim-server-world-data
+      {{ end }}
