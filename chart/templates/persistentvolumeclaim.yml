@@ -4,7 +4,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: valheim-server-world-data
 spec:
+  {{ if .Values.storage.pvc.storageClassName }}
   storageClassName: {{ .Values.storage.pvc.storageClassName }}
+  {{ end }}
   accessModes:
     - ReadWriteOnce
   resources:

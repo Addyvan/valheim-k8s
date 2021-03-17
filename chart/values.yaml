@@ -9,7 +9,6 @@ storage:
   hostvol:
     path: /data/valheim
   pvc:
-    storageClassName: default
     size: 1Gi
 
 networking:

@@ -47,7 +47,7 @@ adminlist.txt  backups  bannedlist.txt  permittedlist.txt  prefs  worlds
 
 To use a `persistentVolumeClaim` for storage, you will need to first set up your CSI and StorageClass for your K8s cluster. Information regarding that differs by cloud provider and there are several guides available for configuring each of them.
 
-Once you have your StorageClass set up, set `storage.kind` to `persistentVolumeClaim`, set `storage.pvc.storageClassName` to the name of your previously configured StorageClass, and optionally set `storage.pvc.size` to the size of the volume to create.
+Once you have your StorageClass set up, set `storage.kind` to `persistentVolumeClaim`, optionally set `storage.pvc.storageClassName` to the name of your previously configured StorageClass (or it will use the default StorageClass), and set `storage.pvc.size` to the size of the volume to create (default 1Gi).
 
 ### Using an existing world
 
