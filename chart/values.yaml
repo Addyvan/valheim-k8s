@@ -15,3 +15,19 @@ networking:
   serviceType: LoadBalancer
 
 nodeSelector: {}
+
+# resources:
+#   requests:
+#     memory: "4Gi"
+#     cpu: "2000m"
+
+# extraEnvironmentVars:
+#   BACKUPS: true
+#   BACKUPS_CRON: "0 * * * *"
+#   BACKUPS_MAX_AGE: 3
+#   POST_BACKUP_HOOK: "timeout 300 scp -i /extraVolumes/backup-ssh-key/ssh-privatekey -o StrictHostKeyChecking=no @BACKUP_FILE@ myself@example.com:~/valheim_backups/$(basename @BACKUP_FILE@)"
+
+# extraVolumes:
+# - type: secret
+#   name: backup-ssh-key
+#   defaultMode: 0600
