@@ -19,19 +19,21 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 
 ## Configuration
 
-| Parameter                                  | Description                                                | Default                           |
-|:-------------------------------------------|:-----------------------------------------------------------|:----------------------------------|
-| `worldName`                                | Prefix of the world files to use (will make new if missing)| `example-world-name`              |
-| `serverName`                               | Server name displayed in the server browser(s)             | `example-server-name`             |
-| `password`                                 | Server password                                            | `password`                        |
-| `storage.kind`                             | Storage strategy/soln used to provide the game-server with persistence | `hostvol`             |
-| `storage.hostvol.path`                     | The folder to be mounted into /config in the game-server pod | `/data/valheim`                 |
-| `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP` | `LoadBalancer`                 |
-| `nodeSelector`                   |  | `{}`                 |
+| Parameter                                  | Description                                                            | Default                 |
+|:-------------------------------------------|:-----------------------------------------------------------------------|:------------------------|
+| `worldName`                                | Prefix of the world files to use (will make new if missing)            | `example-world-name`    |
+| `serverName`                               | Server name displayed in the server browser(s)                         | `example-server-name`   |
+| `password`                                 | Server password                                                        | `password`              |
+| `storage.kind`                             | Storage strategy/soln used to provide the game-server with persistence | `hostvol`               |
+| `storage.hostvol.path`                     | The folder to be mounted into /config in the game-server pod           | `/data/valheim`         |
+| `storage.pvc.storageClassName`             | The storageClass used to create the persistentVolumeClaim              | `default`               |
+| `storage.pvc.size`                         | The size of the persistent volume to be created                        | `1Gi`                   |
+| `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`          |
+| `nodeSelector`                             |                                                                        | `{}`                    |
 
 ## Persistence
 
-The only form of persistence currently available is through mounting a `hostvol`. Please create an issue if you would like support for specific cloud storage solutions via PVCs / storageclasses. They vary by provider so PRs / testers welcome for this. 
+Currently persistence is supported through mounting a `hostvol` or via a `persistentVolumeClaim`. Please create an issue if you would like support for specific cloud storage solutions via PVCs / storageclasses. They vary by provider so PRs / testers welcome for this. 
 
 ### Using a Host Volume
 
@@ -40,6 +42,12 @@ On the node you wish to use make sure the folder you are mounting exists (ideall
 $ ls /data/valheim
 adminlist.txt  backups  bannedlist.txt  permittedlist.txt  prefs  worlds
 ```
+
+### Using a persistentVolumeClaim
+
+To use a `persistentVolumeClaim` for storage, you will need to first set up your CSI and StorageClass for your K8s cluster. Information regarding that differs by cloud provider and there are several guides available for configuring each of them.
+
+Once you have your StorageClass set up, set `storage.kind` to `persistentVolumeClaim`, optionally set `storage.pvc.storageClassName` to the name of your previously configured StorageClass (or it will use the default StorageClass), and set `storage.pvc.size` to the size of the volume to create (default 1Gi).
 
 ### Using an existing world
 
