@@ -37,6 +37,8 @@ Currently persistence is supported through mounting a `hostvol` or via a `persis
 
 ### Using a Host Volume
 
+Note: If you are deploying to a cloud provider it is highly recommended that you use a PVC powered by a cloud-specific storageClass. Otherwise you risk losing your world.
+
 On the node you wish to use make sure the folder you are mounting exists (ideally empty if you are starting a new world). Once you spin up the game pod you should see the following files created:
 ```bash
 $ ls /data/valheim
