@@ -56,7 +56,6 @@ spec:
       - name: gamefiles
         hostPath:
           path: {{ .Values.storage.hostvol.path }}
-          type: Directory
       {{ end }}
       {{ if eq .Values.storage.kind "persistentVolumeClaim" }}
       - name: gamefiles
