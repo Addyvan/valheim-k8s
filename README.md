@@ -30,6 +30,8 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `storage.pvc.size`                         | The size of the persistent volume to be created                        | `1Gi`                   |
 | `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`          |
 | `nodeSelector`                             |                                                                        | `{}`                    |
+| `image.repository` | Specifies container image repository | `lloesche/valheim-server` |
+| `image.tag` | Specifies container image tag | `latest` |
 
 ## Persistence
 
