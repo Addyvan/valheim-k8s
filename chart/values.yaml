@@ -4,6 +4,10 @@ password: password
 
 resources: {}
 
+image:
+  repository: lloesche/valheim-server
+  tag: latest
+
 storage:
   kind: hostvol
   hostvol:
