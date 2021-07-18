@@ -18,7 +18,8 @@ storage:
 networking:
   serviceType: LoadBalancer
   gamePort: 2456
-  useQueryPort: "true"
+  publishQueryPort: "true"
+  statusHttp: "false"
 
 
 
@@ -30,7 +31,7 @@ nodeSelector: {}
 #     cpu: "2000m"
 
 # extraEnvironmentVars:
-  # BACKUPS: true
+#   BACKUPS: true
 #   BACKUPS_CRON: "0 * * * *"
 #   BACKUPS_MAX_AGE: 3
 #   POST_BACKUP_HOOK: "timeout 300 scp -i /extraVolumes/backup-ssh-key/ssh-privatekey -o StrictHostKeyChecking=no @BACKUP_FILE@ myself@example.com:~/valheim_backups/$(basename @BACKUP_FILE@)"

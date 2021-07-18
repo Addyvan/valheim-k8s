@@ -8,11 +8,16 @@ spec:
     port: {{ .Values.networking.gamePort | int }}
     targetPort: {{ .Values.networking.gamePort | int }}
     protocol: UDP
-  {{ if .Values.networking.useQueryPort }}
+  {{ if .Values.networking.publishQueryPort }}
   - name: queryport
     port: {{ .Values.networking.gamePort | int | add 1 }}
     targetPort: {{ .Values.networking.gamePort | int | add 1 }}
     protocol: UDP
+  {{ end }}
+  {{ if .Values.networking.statusHttp }}
+  - name: http
+    port: 80
+    targetPort: 80
   {{ end }}
   type: {{ .Values.networking.serviceType }}
   selector:
