@@ -29,6 +29,8 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `storage.pvc.storageClassName`             | The storageClass used to create the persistentVolumeClaim              | `default`               |
 | `storage.pvc.size`                         | The size of the persistent volume to be created                        | `1Gi`                   |
 | `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`          |
+| `networking.gamePort`                      | The UDP start port the server will listen on                           |  `2456`                 |
+| `networking.publishQueryPort`              | Expose the Steam query port (gamePort + 1)                             |  `true`                 |
 | `nodeSelector`                             |                                                                        | `{}`                    |
 | `image.repository` | Specifies container image repository | `lloesche/valheim-server` |
 | `image.tag` | Specifies container image tag | `latest` |

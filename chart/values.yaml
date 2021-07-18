@@ -17,6 +17,10 @@ storage:
 
 networking:
   serviceType: LoadBalancer
+  gamePort: 2456
+  publishQueryPort: "true"
+
+
 
 nodeSelector: {}
 
