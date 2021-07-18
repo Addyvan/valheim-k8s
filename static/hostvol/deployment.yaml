@@ -1,3 +1,4 @@
+# Source: valheim-k8s/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,14 +7,16 @@ spec:
   selector:
     matchLabels:
       app: valheim-server
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         app: valheim-server
     spec:
       containers:
-      - image: lloesche/valheim-server:latest
-        name: vailheim-server
+      - image: "lloesche/valheim-server:latest"
+        name: valheim-server
         env:
         - name: SERVER_NAME
           value: example-server-name
@@ -21,20 +24,24 @@ spec:
           value: example-world-name
         - name: SERVER_PASS
           value: password
+        - name: SERVER_PORT
+          value: "2456"
         ports:
         - containerPort: 2456
-          name: game1
+          name: gameport
         - containerPort: 2457
-          name: game2
-        - containerPort: 2458
-          name: game3
+          name: queryport
         volumeMounts:
+        
         - mountPath: /config
           name: gamefiles
+        
+        
         resources:
           {}
       volumes:
+      
       - name: gamefiles
         hostPath:
           path: /data/valheim
-          type: Directory
+          type: DirectoryOrCreate
