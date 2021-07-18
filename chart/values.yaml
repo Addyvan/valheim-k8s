@@ -19,6 +19,7 @@ networking:
   serviceType: LoadBalancer
   gamePort: 2456
   publishQueryPort: "true"
+  statusHttp: "false"
 
 
 

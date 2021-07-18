@@ -29,8 +29,9 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `storage.pvc.storageClassName`             | The storageClass used to create the persistentVolumeClaim              | `default`               |
 | `storage.pvc.size`                         | The size of the persistent volume to be created                        | `1Gi`                   |
 | `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`          |
-| `networking.gamePort`                      | The UDP start port the server will listen on                           |  `2456`                 |
-| `networking.publishQueryPort`              | Expose the Steam query port (gamePort + 1)                             |  `true`                 |
+| `networking.gamePort`                      | The UDP start port the server will listen on                           | `2456`                  |
+| `networking.publishQueryPort`              | Expose the Steam query port (gamePort + 1)                             | `true`                  |
+| `networking.statusHttp`                    | Enables the status http server                                         | `false`                 |
 | `nodeSelector`                             |                                                                        | `{}`                    |
 | `image.repository` | Specifies container image repository | `lloesche/valheim-server` |
 | `image.tag` | Specifies container image tag | `latest` |
@@ -72,6 +73,14 @@ Assuming you have taken care of the networking (port-forwarding if needed, LoadB
   * You will be asked for the password in the steam ui and in game
 
 More visual set of instructions [here](https://github.com/mbround18/valheim-docker/discussions/51)
+
+## HTTP Status page
+When your sever is set to public, it serves a status response on UDP game port + 1 (default 2347). The `lloesche/valheim-server` image supports serving this page over http. 
+
+To use this, set `extraEnvironmentVars.SERVER_PUBLIC=true` (default) and `networking.statusHttp=true`.
+
+Note that if you are using a `LoadBalancer` Service type, you must be on Kubernets >= v1.20 and and your LoadBalancer implementation must support it (tested with Metallb and Klipper-lb, [see here for more details](https://github.com/kubernetes/kubernetes/issues/23880)). You must also enable the `MixedProtocolLBService` feature gate by starting your apiserver with the `--feature-gates="MixedProtocolLBService=true"` flag. 
+
 
 ## Potential future updates
 

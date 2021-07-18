@@ -29,6 +29,8 @@ spec:
           value: {{ .Values.password }}
         - name: SERVER_PORT
           value: {{ .Values.networking.gamePort | quote }}
+        - name: STATUS_HTTP
+          value: {{ .Values.networking.statusHttp | quote }}
         {{ if .Values.extraEnvironmentVars -}}
         {{ range $key, $value := .Values.extraEnvironmentVars }}
         - name: {{ $key }}
@@ -40,6 +42,10 @@ spec:
           name: gameport
         - containerPort: {{ .Values.networking.gamePort | int | add 1 }}
           name: queryport
+        {{ if .Values.networking.statusHttp }}
+        - containerPort: 80
+          name: http
+        {{ end }}
         volumeMounts:
         {{ if .Values.storage.kind }}
         - mountPath: /config
