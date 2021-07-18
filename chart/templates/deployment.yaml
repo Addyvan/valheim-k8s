@@ -27,6 +27,8 @@ spec:
           value: {{ .Values.worldName }}
         - name: SERVER_PASS
           value: {{ .Values.password }}
+        - name: SERVER_PORT
+          value: {{ .Values.networking.gamePort | quote }}
         {{ if .Values.extraEnvironmentVars -}}
         {{ range $key, $value := .Values.extraEnvironmentVars }}
         - name: {{ $key }}
@@ -34,12 +36,10 @@ spec:
         {{ end -}}
         {{ end -}}
         ports:
-        - containerPort: 2456
-          name: game1
-        - containerPort: 2457
-          name: game2
-        - containerPort: 2458
-          name: game3
+        - containerPort: {{ .Values.networking.gamePort | int }}
+          name: gameport
+        - containerPort: {{ .Values.networking.gamePort | int | add 1 }}
+          name: queryport
         volumeMounts:
         {{ if .Values.storage.kind }}
         - mountPath: /config
