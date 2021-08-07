@@ -34,6 +34,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `serverStorage.pvc.size`                   | The size of the persistent volume to be created                        | `5Gi`                   |
 | `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`          |
 | `networking.gamePort`                      | The UDP start port the server will listen on                           |  `2456`                 |
+| `networking.nodePort`                      | When service type is `NodePort`, assign a fixed UDP port to the server |  `""`                   |
 | `networking.publishQueryPort`              | Expose the Steam query port (gamePort + 1)                             |  `true`                 |
 | `nodeSelector`                             |                                                                        | `{}`                    |
 | `image.repository` | Specifies container image repository | `lloesche/valheim-server` |
