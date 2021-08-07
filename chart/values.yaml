@@ -15,6 +15,13 @@ storage:
   pvc:
     size: 1Gi
 
+serverStorage:
+  kind: hostvol
+  hostvol:
+    path: /data/valheim-server
+  pvc:
+    size: 5Gi
+
 networking:
   serviceType: LoadBalancer
   gamePort: 2456
