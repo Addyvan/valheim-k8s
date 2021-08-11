@@ -8,11 +8,17 @@ spec:
     port: {{ .Values.networking.gamePort | int }}
     targetPort: {{ .Values.networking.gamePort | int }}
     protocol: UDP
+    {{- if eq .Values.networking.serviceType "NodePort" }}
+    nodePort: {{ default "" .Values.networking.nodePort }}
+    {{- end }}
   {{ if .Values.networking.publishQueryPort }}
   - name: queryport
     port: {{ .Values.networking.gamePort | int | add 1 }}
     targetPort: {{ .Values.networking.gamePort | int | add 1 }}
     protocol: UDP
+    {{- if eq .Values.networking.serviceType "NodePort" }}
+    nodePort: {{ default "" (.Values.networking.nodePort | int | add 1) }}
+    {{- end }}
   {{ end }}
   type: {{ .Values.networking.serviceType }}
   selector:

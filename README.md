@@ -28,8 +28,13 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `storage.hostvol.path`                     | The folder to be mounted into /config in the game-server pod           | `/data/valheim`         |
 | `storage.pvc.storageClassName`             | The storageClass used to create the persistentVolumeClaim              | `default`               |
 | `storage.pvc.size`                         | The size of the persistent volume to be created                        | `1Gi`                   |
+| `serverStorage.kind`                       | Storage strategy/soln used to save the server installation files       | `hostvol`               |
+| `serverStorage.hostvol.path`               | The folder to be mounted into /opt/valheim in the game-server pod      | `/data/valheim-server`  |
+| `serverStorage.pvc.storageClassName`       | The storageClass used to create the persistentVolumeClaim              | `default`               |
+| `serverStorage.pvc.size`                   | The size of the persistent volume to be created                        | `5Gi`                   |
 | `networking.serviceType`                   | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`          |
 | `networking.gamePort`                      | The UDP start port the server will listen on                           |  `2456`                 |
+| `networking.nodePort`                      | When service type is `NodePort`, assign a fixed UDP port to the server |  `""`                   |
 | `networking.publishQueryPort`              | Expose the Steam query port (gamePort + 1)                             |  `true`                 |
 | `nodeSelector`                             |                                                                        | `{}`                    |
 | `image.repository` | Specifies container image repository | `lloesche/valheim-server` |
@@ -37,7 +42,9 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 
 ## Persistence
 
-Currently persistence is supported through mounting a `hostvol` or via a `persistentVolumeClaim`. Please create an issue if you would like support for specific cloud storage solutions via PVCs / storageclasses. They vary by provider so PRs / testers welcome for this. 
+Currently persistence is supported through mounting a `hostvol` or via a `persistentVolumeClaim`. Please create an issue if you would like support for specific cloud storage solutions via PVCs / storageclasses. They vary by provider so PRs / testers welcome for this.
+
+You can enable persistence for both the server data (your worlds, mounted at `/config` and configured with the `storage` parameter) and the server installation (to skip downloading it every time a pod is created, mounted at `/opt/valheim`, configured with the `serverStorage` parameter).
 
 ### Using a Host Volume
 

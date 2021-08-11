@@ -45,6 +45,10 @@ spec:
         - mountPath: /config
           name: gamefiles
         {{ end }}
+        {{ if .Values.serverStorage.kind }}
+        - mountPath: /opt/valheim
+          name: serverfiles
+        {{ end }}
         {{ range .Values.extraVolumes }}
         - name: {{ .name }}
           readOnly: true
@@ -58,10 +62,21 @@ spec:
           path: {{ .Values.storage.hostvol.path }}
           type: DirectoryOrCreate
       {{ end }}
+      {{ if eq .Values.serverStorage.kind "hostvol" }}
+      - name: serverfiles
+        hostPath:
+          path: {{ .Values.serverStorage.hostvol.path }}
+          type: DirectoryOrCreate
+      {{ end }}
       {{ if eq .Values.storage.kind "persistentVolumeClaim" }}
       - name: gamefiles
         persistentVolumeClaim:
           claimName: valheim-server-world-data
+      {{ end }}
+      {{ if eq .Values.serverStorage.kind "persistentVolumeClaim" }}
+      - name: serverfiles
+        persistentVolumeClaim:
+          claimName: valheim-server-base-data
       {{ end }}
       {{ range .Values.extraVolumes }}
       - name: {{ .name }}
