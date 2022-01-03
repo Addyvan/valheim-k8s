@@ -30,6 +30,9 @@ networking:
 
 
 nodeSelector: {}
+  
+tolerations: {}
+
 
 # resources:
 #   requests:
