@@ -20,7 +20,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 ## Configuration
 
 | Parameter                            | Description                                                            | Default                   |
-| :----------------------------------- | :--------------------------------------------------------------------- | :------------------------ |
+|:-------------------------------------|:-----------------------------------------------------------------------|:--------------------------|
 | `worldName`                          | Prefix of the world files to use (will make new if missing)            | `example-world-name`      |
 | `serverName`                         | Server name displayed in the server browser(s)                         | `example-server-name`     |
 | `password`                           | Server password                                                        | `password`                |
@@ -40,6 +40,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `tolerations`                        |                                                                        | `[]`                      |
 | `image.repository`                   | Specifies container image repository                                   | `lloesche/valheim-server` |
 | `image.tag`                          | Specifies container image tag                                          | `latest`                  |
+| `priorityClassName`                  | Specifies the priority class name for the deployment                   | None                      |
 
 ## Persistence
 
