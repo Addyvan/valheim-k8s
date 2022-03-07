@@ -33,6 +33,8 @@ nodeSelector: {}
   
 tolerations: {}
 
+# If you utilize priority classes, you can define the priority class for this deployment here
+# priorityClassName: my-priority-class-name
 
 # resources:
 #   requests:
