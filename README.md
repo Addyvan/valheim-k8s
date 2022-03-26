@@ -33,6 +33,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `serverStorage.pvc.storageClassName` | The storageClass used to create the persistentVolumeClaim              | `default`                 |
 | `serverStorage.pvc.size`             | The size of the persistent volume to be created                        | `5Gi`                     |
 | `networking.serviceType`             | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`            |
+| `networking.loadBalancerIP`          | A user supplied IP for service type LoadBalancer                       | None                      |
 | `networking.gamePort`                | The UDP start port the server will listen on                           | `2456`                    |
 | `networking.nodePort`                | When service type is `NodePort`, assign a fixed UDP port to the server | `""`                      |
 | `networking.publishQueryPort`        | Expose the Steam query port (gamePort + 1)                             | `true`                    |
