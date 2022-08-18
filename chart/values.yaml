@@ -1,6 +1,6 @@
 worldName: example-world-name
 serverName: example-server-name
-password: password 
+password: password
 
 resources: {}
 
@@ -28,9 +28,8 @@ networking:
   publishQueryPort: "true"
   nodePort: 30373
 
-
 nodeSelector: {}
-  
+
 tolerations: {}
 
 # If you utilize priority classes, you can define the priority class for this deployment here
@@ -51,3 +50,13 @@ tolerations: {}
 # - type: secret
 #   name: backup-ssh-key
 #   defaultMode: 0600
+
+# If you want addtional LoadBalancer control, something like this (metalLB example) can be used:
+# networking:
+#   serviceType: LoadBalancer
+#   gamePort: 2456
+#   publishQueryPort: "true"
+#   loadBalancerIP: 192.168.100.100
+#   serviceAnnotations:
+#     metallb.universe.tf/address-pool: valheim-server
+#   externalTrafficPolicy: Local
