@@ -13,12 +13,6 @@ spec:
     {{- if eq .Values.networking.serviceType "NodePort" }}
     nodePort: {{ default "" .Values.networking.nodePort }}
     {{- end }}
-    {{- if (and (eq .Values.networking.serviceType "LoadBalancer") (.Values.networking.loadBalancerIP)) }}
-    loadBalancerIP: {{ .Values.networking.loadBalancerIP }}
-    {{- end }}
-    {{- if (and (eq .Values.networking.serviceType "LoadBalancer") (.Values.networking.externalTrafficPolicy)) }}
-    externalTrafficPolicy: {{ .Values.networking.externalTrafficPolicy }}
-    {{- end }}
   {{ if .Values.networking.publishQueryPort }}
   - name: queryport
     port: {{ .Values.networking.gamePort | int | add 1 }}
@@ -27,13 +21,13 @@ spec:
     {{- if eq .Values.networking.serviceType "NodePort" }}
     nodePort: {{ default "" (.Values.networking.nodePort | int | add 1) }}
     {{- end }}
-    {{- if (and (eq .Values.networking.serviceType "LoadBalancer") (.Values.networking.loadBalancerIP)) }}
-    loadBalancerIP: {{ .Values.networking.loadBalancerIP }}
-    {{- end }}
-    {{- if (and (eq .Values.networking.serviceType "LoadBalancer") (.Values.networking.externalTrafficPolicy)) }}
-    externalTrafficPolicy: {{ .Values.networking.externalTrafficPolicy }}
-    {{- end }}
   {{ end }}
   type: {{ .Values.networking.serviceType }}
+  {{- if (.Values.networking.loadBalancerIP)) }}
+  loadBalancerIP: {{ .Values.networking.loadBalancerIP }}
+  {{- end }}
+  {{- if (.Values.networking.externalTrafficPolicy)) }}
+  externalTrafficPolicy: {{ .Values.networking.externalTrafficPolicy }}
+  {{- end }}
   selector:
     app: valheim-server
