@@ -23,10 +23,10 @@ spec:
     {{- end }}
   {{ end }}
   type: {{ .Values.networking.serviceType }}
-  {{- if (.Values.networking.loadBalancerIP)) }}
+  {{- if (.Values.networking.loadBalancerIP) }}
   loadBalancerIP: {{ .Values.networking.loadBalancerIP }}
   {{- end }}
-  {{- if (.Values.networking.externalTrafficPolicy)) }}
+  {{- if (.Values.networking.externalTrafficPolicy) }}
   externalTrafficPolicy: {{ .Values.networking.externalTrafficPolicy }}
   {{- end }}
   selector:
