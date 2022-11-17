@@ -2,7 +2,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: valheim-server-world-data
+  name: {{ .Release.Name }}-world-data
+  namespace: {{ .Release.Namespace }}
 spec:
   {{ if .Values.storage.pvc.storageClassName }}
   storageClassName: {{ .Values.storage.pvc.storageClassName }}
@@ -18,7 +19,8 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: valheim-server-base-data
+  name: {{ .Release.Name }}-server-base-data
+  namespace: {{ .Release.Namespace }}
 spec:
   {{ if .Values.serverStorage.pvc.storageClassName }}
   storageClassName: {{ .Values.serverStorage.pvc.storageClassName }}

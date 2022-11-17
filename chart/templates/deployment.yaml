@@ -1,17 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: valheim-server
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      app: valheim-server
+      app: {{ .Release.Name }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: valheim-server
+        app: {{ .Release.Name }}
     spec:
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -23,14 +24,26 @@ spec:
       {{- end }}
       containers:
       - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        name: valheim-server
+        name: {{ .Release.Name }}
         env:
         - name: SERVER_NAME
           value: {{ .Values.serverName }}
         - name: WORLD_NAME
           value: {{ .Values.worldName }}
+        {{ if .Values.passwordSecret -}}
+        - name: SERVER_PASS
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.passwordSecret }}
+              key: password
+              optional: false
+        {{ else if .Values.password -}}
         - name: SERVER_PASS
           value: {{ .Values.password }}
+        {{ else -}}
+        - name: SERVER_PASS
+          value: {{ .Release.Name }}
+        {{end -}}
         - name: SERVER_PORT
           value: {{ .Values.networking.gamePort | quote }}
         {{ if .Values.extraEnvironmentVars -}}
@@ -75,12 +88,12 @@ spec:
       {{ if eq .Values.storage.kind "persistentVolumeClaim" }}
       - name: gamefiles
         persistentVolumeClaim:
-          claimName: valheim-server-world-data
+          claimName: {{ .Release.Name }}-world-data
       {{ end }}
       {{ if eq .Values.serverStorage.kind "persistentVolumeClaim" }}
       - name: serverfiles
         persistentVolumeClaim:
-          claimName: valheim-server-base-data
+          claimName: {{ .Release.Name }}-server-base-data
       {{ end }}
       {{ range .Values.extraVolumes }}
       - name: {{ .name }}
