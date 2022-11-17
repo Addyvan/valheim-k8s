@@ -42,7 +42,7 @@ spec:
           value: {{ .Values.password }}
         {{ else -}}
         - name: SERVER_PASS
-          value: {{ .Release.Name }}
+          value: "password"
         {{end -}}
         - name: SERVER_PORT
           value: {{ .Values.networking.gamePort | quote }}

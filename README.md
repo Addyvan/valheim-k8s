@@ -24,6 +24,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `worldName`                          | Prefix of the world files to use (will make new if missing)            | `example-world-name`      |
 | `serverName`                         | Server name displayed in the server browser(s)                         | `example-server-name`     |
 | `password`                           | Server password                                                        | `password`                |
+| `passwordSecret`                           | Name of Kubernetes secret to pull secret from. Secret should contain a single field labeled `password`                                                        | None                |
 | `storage.kind`                       | Storage strategy/soln used to provide the game-server with persistence | `hostvol`                 |
 | `storage.hostvol.path`               | The folder to be mounted into /config in the game-server pod           | `/data/valheim`           |
 | `storage.pvc.storageClassName`       | The storageClass used to create the persistentVolumeClaim              | `default`                 |
