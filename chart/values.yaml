@@ -23,6 +23,10 @@ serverStorage:
     size: 5Gi
 
 networking:
+  # Optional additional annotations to add to the service
+  # serviceAnnotations: {}
+  # Optional additional labels to add to the service
+  # serviceLabels: {}
   serviceType: LoadBalancer
   gamePort: 2456
   publishQueryPort: "true"
