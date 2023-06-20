@@ -53,10 +53,12 @@ spec:
         {{ end -}}
         {{ end -}}
         ports:
-        - containerPort: {{ .Values.networking.gamePort | int }}
-          name: gameport
-        - containerPort: {{ .Values.networking.gamePort | int | add 1 }}
-          name: queryport
+        - name: gameport
+          containerPort: {{ .Values.networking.gamePort | int }}
+          protocol: UDP
+        - name: queryport
+          containerPort: {{ .Values.networking.gamePort | int | add 1 }}
+          protocol: UDP
         volumeMounts:
         {{ if .Values.storage.kind }}
         - mountPath: /config
