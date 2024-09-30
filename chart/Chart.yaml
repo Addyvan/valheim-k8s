@@ -3,7 +3,7 @@ name: valheim-k8s
 description: Basic chart for deploying valheim to a k8s homelab 
 icon: https://www.google.com/url?sa=i&url=https%3A%2F%2Fstore.steampowered.com%2Fapp%2F892970%2FValheim%2F&psig=AOvVaw1MMOQJzse-eyruGtGG0DEs&ust=1641045420126000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIDmhd2YjvUCFQAAAAAdAAAAABAJ
 type: application
-version: 2.0.0
+version: 2.0.1
 
 # upstream repo https://github.com/lloesche/valheim-server-docker
 # doesn't have semantic versions so this field mean anything:
