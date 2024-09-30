@@ -24,7 +24,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `worldName`                          | Prefix of the world files to use (will make new if missing)            | `example-world-name`      |
 | `serverName`                         | Server name displayed in the server browser(s)                         | `example-server-name`     |
 | `password`                           | Server password                                                        | `password`                |
-| `passwordSecret`                           | Name of Kubernetes secret to pull secret from. Secret should contain a single field labeled `password`                                                        | None                |
+| `passwordSecret`                     | Name of Kubernetes secret to pull secret from. Secret should contain a single field labeled `password`                                                        | None                |
 | `storage.kind`                       | Storage strategy/soln used to provide the game-server with persistence | `hostvol`                 |
 | `storage.hostvol.path`               | The folder to be mounted into /config in the game-server pod           | `/data/valheim`           |
 | `storage.pvc.storageClassName`       | The storageClass used to create the persistentVolumeClaim              | `default`                 |
@@ -33,6 +33,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `serverStorage.hostvol.path`         | The folder to be mounted into /opt/valheim in the game-server pod      | `/data/valheim-server`    |
 | `serverStorage.pvc.storageClassName` | The storageClass used to create the persistentVolumeClaim              | `default`                 |
 | `serverStorage.pvc.size`             | The size of the persistent volume to be created                        | `5Gi`                     |
+| `useHostNetworking`                  | If true, set pod.spec.hostNetwork = true and don't create a service    | `false`                   |
 | `networking.serviceType`             | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`            |
 | `networking.loadBalancerIP`          | A user supplied IP for service type LoadBalancer                       | None                      |
 | `networking.gamePort`                | The UDP start port the server will listen on                           | `2456`                    |
