@@ -22,6 +22,9 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{ if eq .Values.useHostNetworking true }}
+      hostNetwork: true
+      {{ end }}
       containers:
       - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         name: {{ .Release.Name }}

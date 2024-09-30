@@ -22,6 +22,9 @@ serverStorage:
   pvc:
     size: 5Gi
 
+# if useHostNetworking is set to true then no service is created
+# and the gamePort 
+useHostNetworking: false
 networking:
   # Optional additional annotations to add to the service
   # serviceAnnotations: {}
@@ -29,7 +32,7 @@ networking:
   # serviceLabels: {}
   serviceType: LoadBalancer
   gamePort: 2456
-  publishQueryPort: "true"
+  publishQueryPort: true
   nodePort: 30373
 
 
