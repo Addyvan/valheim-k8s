@@ -22,5 +22,8 @@ spec:
     {{- end }}
   {{ end }}
   type: {{ .Values.networking.serviceType }}
+  {{ if .Values.networking.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.networking.loadBalancerIP | quote }}
+  {{ end }}
   selector:
     app: {{ .Release.Name }}
