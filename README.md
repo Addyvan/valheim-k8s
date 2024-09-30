@@ -2,6 +2,8 @@
 
 Kubernetes deployment for a valheim game-server. Based off the dockerization work by lloesche [here](https://github.com/lloesche/valheim-server-docker).
 
+For advanced configuration options see [valheim-server-docker repo's README](https://github.com/lloesche/valheim-server-docker)
+
 ## Usage
 
 Note: This assumes the node you are running on can use `/data/valheim` mounted as a host volume for persistence.
