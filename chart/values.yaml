@@ -22,6 +22,28 @@ serverStorage:
   pvc:
     size: 5Gi
 
+#storage:
+#  kind: persistentVolumeClaim
+#  pvc:
+#    existingClaim: example-pvc-name
+
+#storage:
+#  kind: persistentVolumeClaim
+#  pvc:
+#    storageClass: example-storage-class
+#    size: 1Gi
+
+#serverStorage:
+#  kind: persistentVolumeClaim
+#  pvc:
+#    existingClaim: example-pvc-name
+
+#serverStorage:
+#  kind: persistentVolumeClaim
+#  pvc:
+#    storageClass: example-storage-class
+#    size: 5Gi
+
 # if useHostNetworking is set to true then no service is created
 # and the gamePort 
 useHostNetworking: false

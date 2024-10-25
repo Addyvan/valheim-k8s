@@ -31,10 +31,12 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `storage.hostvol.path`               | The folder to be mounted into /config in the game-server pod           | `/data/valheim`           |
 | `storage.pvc.storageClassName`       | The storageClass used to create the persistentVolumeClaim              | `default`                 |
 | `storage.pvc.size`                   | The size of the persistent volume to be created                        | `1Gi`                     |
+| `storage.pvc.existingClaim`          | The existing persistentVolumeClaim to use if set                       | None                      |
 | `serverStorage.kind`                 | Storage strategy/soln used to save the server installation files       | `hostvol`                 |
 | `serverStorage.hostvol.path`         | The folder to be mounted into /opt/valheim in the game-server pod      | `/data/valheim-server`    |
 | `serverStorage.pvc.storageClassName` | The storageClass used to create the persistentVolumeClaim              | `default`                 |
 | `serverStorage.pvc.size`             | The size of the persistent volume to be created                        | `5Gi`                     |
+| `serverStorage.pvc.existingClaim`    | The existing persistentVolumeClaim to use if set                       | None                      |
 | `useHostNetworking`                  | If true, set pod.spec.hostNetwork = true and don't create a service    | `false`                   |
 | `networking.serviceType`             | The type of service e.g `NodePort`, `LoadBalancer` or `ClusterIP`      | `LoadBalancer`            |
 | `networking.loadBalancerIP`          | A user supplied IP for service type LoadBalancer                       | None                      |
@@ -69,6 +71,8 @@ adminlist.txt  backups  bannedlist.txt  permittedlist.txt  prefs  worlds
 To use a `persistentVolumeClaim` for storage, you will need to first set up your CSI and StorageClass for your K8s cluster. Information regarding that differs by cloud provider and there are several guides available for configuring each of them.
 
 Once you have your StorageClass set up, set `storage.kind` to `persistentVolumeClaim`, optionally set `storage.pvc.storageClassName` to the name of your previously configured StorageClass (or it will use the default StorageClass), and set `storage.pvc.size` to the size of the volume to create (default 1Gi).
+
+If you already have a `persistentVolumeClaim` and `persistentVolume`, perhaps set up manually or restored from a backup, you can set `storage.pvc.existingClaim` to the name of your `persistentVolumeClaim`.
 
 ### Using an existing world
 

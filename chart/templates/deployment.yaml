@@ -91,12 +91,12 @@ spec:
       {{ if eq .Values.storage.kind "persistentVolumeClaim" }}
       - name: gamefiles
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-world-data
+          claimName: {{ if .Values.storage.pvc.existingClaim }}{{ .Values.storage.pvc.existingClaim }}{{ else }}{{ .Release.Name }}-world-data{{ end }}
       {{ end }}
       {{ if eq .Values.serverStorage.kind "persistentVolumeClaim" }}
       - name: serverfiles
         persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-server-base-data
+          claimName: {{ if .Values.serverStorage.pvc.existingClaim }}{{ .Values.serverStorage.pvc.existingClaim }}{{ else }}{{ .Release.Name }}-server-base-data{{ end }}
       {{ end }}
       {{ range .Values.extraVolumes }}
       - name: {{ .name }}

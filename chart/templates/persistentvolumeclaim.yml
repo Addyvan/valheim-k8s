@@ -1,4 +1,4 @@
-{{ if eq .Values.storage.kind "persistentVolumeClaim" }}
+{{ if and (eq .Values.storage.kind "persistentVolumeClaim") (not .Values.storage.pvc.existingClaim) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -15,7 +15,7 @@ spec:
       storage: {{ .Values.storage.pvc.size }}
 {{ end }}
 ---
-{{ if eq .Values.serverStorage.kind "persistentVolumeClaim" }}
+{{ if and (eq .Values.serverStorage.kind "persistentVolumeClaim") (not .Values.serverStorage.pvc.existingClaim) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
