@@ -11,7 +11,9 @@ Note: This assumes the node you are running on can use `/data/valheim` mounted a
 ```bash
 helm repo add valheim-k8s https://addyvan.github.io/valheim-k8s/
 helm repo update
-helm install valheim-server valheim-k8s/valheim-k8s  \
+helm install valheim-server valheim-k8s/valheim-k8s \
+  --namespace valheim \
+  --create-namespace \
   --set worldName=example-world-name \
   --set serverName=example-server-name \
   --set password=password \
